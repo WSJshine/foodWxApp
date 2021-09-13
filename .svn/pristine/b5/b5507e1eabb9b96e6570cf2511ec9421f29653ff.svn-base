@@ -1,0 +1,16 @@
+/* pages/thress/thress.wxss */
+
+
+input,select,textarea{
+	-webkit-appearance: none;
+	font-size: 14px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+	color: #C0C0C0;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #C0C0C0;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: #C0C0C0;
+}

@@ -1,0 +1,125 @@
+<!--pages/stockList/stockList.wxml-->
+<view class="container">
+  <cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">商品库存列表</view>
+</cu-custom>
+  <view class="usermotto">
+    <scroll-view scroll-x class="bg-white nav">
+      <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabName}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+    <view wx:if="{{TabCur == 0}}">
+          <view class="cu-list menu-avatar " wx:for="{{processList}}" wx:for-item="processList" wx:for-index="i">
+            <view class="cu-bar bg-white col-3">
+              <view class="action">
+                <text class="cuIcon-title text-orange "></text> {{processList.name}}
+              </view>
+              <view class="action">
+                <text class=" "></text> {{processList.inventory}} {{processList.specifications}}
+              </view>
+              <view class="action">
+                <button class="cu-btn bg-green shadow" style="width:150rpx" bindtap="processShowModal" data-name='{{processList.name}}' data-target="processModal">详情</button>
+              </view>
+            </view>
+          </view>
+    </view>
+    <view wx:if="{{TabCur == 1}}">
+      <view class="cu-list menu-avatar" wx:for="{{purchaseList}}" wx:for-item="purchaseList" wx:for-index="i">
+            <view class="cu-bar bg-white col-3">
+              <view class="action">
+                <text class="cuIcon-title text-orange "></text> {{purchaseList.name}}
+              </view>
+              <view class="action">
+                <text class=" "></text> {{purchaseList.inventory}} {{purchaseList.specifications}}
+              </view>
+              <view class="action">
+                <button class="cu-btn bg-green shadow" style="width:150rpx" bindtap="noProcessShowModal" data-name='{{purchaseList.name}}'  data-target="noProcessModal">详情</button>
+              </view>
+            </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 加工品详情 -->
+<view class="cu-modal bottom-modal {{modalName=='processModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">详情</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <!-- Modal 内容。 -->
+      <view class="grid col-3 grid-square ">
+          <view  class="flex-sub padding-lr isCard" >
+            <view class="cu-item" wx:for="{{processDetailList}}" wx:for-item="item" wx:for-index="i">
+              <view class="bg-white">
+                  <view class="action cuIcon-title text-orange">{{item.processedProducts}}</view>
+                  <view class="action padding-sm radius  text-sm">
+                    <view class="flex justify-between">
+                      <view class="text-gray text-df" style="margin-left: -20rpx;">库存余量：{{item.warehouseNumber}}{{item.productUnit}}</view>
+                    </view>
+                  </view>
+                  <view class="action  flex justify-between">
+                    <view class="text-gray text-df">加工时间：{{item.warehouseTime}}</view>
+                  </view>
+                </view>
+              </view>
+          </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 非加工品详情 -->
+<view class="cu-modal bottom-modal {{modalName=='noProcessModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">原料详情</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <!-- Modal 内容。 -->
+      <view class="grid col-3 grid-square ">
+          <view  class="flex-sub padding-lr isCard" >
+            <view class="cu-item" wx:for="{{noProcessDetailList}}" wx:for-item="item" wx:for-index="i">
+              <view class="bg-white">
+                  <view class="action cuIcon-title text-orange">{{item.productName}}</view>
+                  <view class=" padding-sm radius  text-sm">
+                    <view class="action padding-sm flex justify-between">
+                      <view class="text-gray text-df" style="margin-left: -20rpx;">库存余量：{{item.warehouseNumber}}{{item.productUnit}}</view>
+                    </view>
+                  </view>
+                  <view class="action padding-sm  flex justify-between">
+                    <view class="text-gray text-df">采购时间：{{item.purchaseTime}}</view>
+                  </view>
+                  <view class="action padding-sm  flex justify-between">
+                    <view class="text-gray text-df">入库时间：{{item.warehouseTime}}</view>
+                  </view>
+                  <view class="action padding-sm  flex justify-between" wx:if="{{item.type == '2'}}">
+                    <view class="text-gray text-df">供应商：{{item.supplierName}}</view>
+                  </view>
+                  <view class="action padding-sm  flex justify-between">
+                    <view class="text-gray text-df">产地：{{item.originName}}</view>
+                  </view>
+                  <view class="action padding-sm flex justify-between" wx:if="{{item.type == '2'}}">
+                    <view class="text-gray text-df">保质期：{{item.guaranteePeriod}}</view>
+                  </view>
+                  <view class="action padding-sm flex justify-between" wx:if="{{item.type == '2'}}">
+                    <view class="text-gray text-df">生产日期：{{item.manufactureTime}}</view>
+                  </view>
+                </view>
+              </view>
+          </view>
+      </view>
+    </view>
+  </view>
+</view>

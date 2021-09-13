@@ -1,0 +1,198 @@
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">食材采购</view>
+</cu-custom>
+
+<view class="container">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="cu-card article">
+        <view class="cu-item shadow"> 
+          <view class="cu-form-group margin-top" wx:if="{{iftrue === 'false'}}">
+            <!-- <view class="action">
+              <text class="cuIcon-title text-orange "></text>供应商 <text class="" wx:if="{{supplier}}">　:　{{supplier}}</text>
+            </view> -->
+            <view class="text-cut">
+                  <image src="../../images/030.png" style="width:50rpx;height:50rpx"></image>
+                  <text class="text-grey">供应商</text> <text class="" wx:if="{{supplier}}"></text>
+                  <!-- <text class="text-grey">供应商</text> <text class="" wx:if="{{supplier}}">　:　{{supplier}}</text> -->
+            </view>
+
+                <picker bindchange="ChooseCheckbox1" range="{{checkbox1}}" value='{{checkbox1[cheIndex].id}}' class='regSelect' range-key="{{'supName'}}" >
+                     <!-- <input  name='cheArry' disabled='false' value='{{checkbox1[cheIndex].supName}}' />  -->
+                     <view class="picker">
+                       {{checkbox1[cheIndex].id?checkbox1[cheIndex].supName:'请选择供应商'}}
+                       {{checkbox1[cheIndex].id?checkbox1[cheIndex].phone:''}}
+                     </view>    
+                </picker>
+          </view>
+
+          <view class="cu-form-group " wx:if="{{iftrue === 'false'}}">
+            <view class="text-cut">
+                  <image src="../../images/016.png" style="width:50rpx;height:50rpx"></image>
+                  <!-- <text class="text-grey">生产单位</text> <text class="" wx:if="{{origin}}">　:　{{origin}}</text> -->
+                  <text class="text-grey">生产单位</text> <text class="" wx:if="{{origin}}"></text>
+            </view>
+            <view>
+                <!-- <view class="action">
+                  <button class="cu-btn round bg-olive shadow" bindtap="showModal" data-target="PositionModal" style="width:150rpx;margin-right:40rpx">选择</button>
+                </view> -->
+                <picker bindchange="ChooseCheckbox2" range="{{checkbox2}}" value='{{checkbox2[cheIndex2].id}}' class='regSelect' range-key="{{'supName'}}" >
+                     <!-- <input  name='cheArry' disabled='false' value='{{checkbox1[cheIndex].supName}}' />  -->
+                     <view class="picker">{{checkbox2[cheIndex2].id?checkbox2[cheIndex2].supName:'请选择生产单位'}}</view>    
+                </picker>
+            </view>
+          </view>
+
+          <view class="cu-form-group margin-top" wx:if="{{iftrue === 'true'}}">
+            <view class="text-cut">
+                  <image src="../../images/016.png" style="width:50rpx;height:50rpx"></image>
+                  <text class="text-grey">生产单位</text>
+            </view>
+            <view>
+              <input class="weui-input" name="originArea" placeholder="请输入生产单位名称" />
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <image src="../../images/023.png" style="width:50rpx;height:50rpx"></image>
+                  <text class="text-grey">是否为加工产品</text>
+            </view>
+            <!-- <switch class="orange radius sm" name="type" checked bindchange="listenerSwitch"></switch> -->
+            <radio-group bindchange="listenerSwitch">
+              <label class="margin-left-sm">
+                <radio class="sm radio" value="true" checked></radio>
+                <text class="myText" style="color:#767474">是</text>
+              </label>
+              <label class="margin-left-sm">
+                <radio class="sm radio"  value="false"></radio>
+                <text class="myText"  style="color:#767474">否</text>
+              </label>
+            </radio-group>
+          </view>
+
+          <view class="cu-form-group text-cut">
+            <view class="text-grey" style="margin-top: 20rpx;">进货时间</view>
+              <picker mode="date" value="{{date}}" end="{{date}}" bindchange="DateChange" style="margin-top:10rpx;">
+                <view class="picker">
+                  {{date}}
+                </view>
+              </picker>
+          </view>
+        </view>
+          
+
+
+          <view class="cu-item shadow"> 
+            <view class="cu-bar bg-white margin-top">
+              <view class="action">
+                <text class="cuIcon-title text-orange "></text> 食材及重量
+              </view>
+              <view class="action">
+                <button class="cu-btn round bg-green shadow" bindtap="foodShowModal" data-target="Modal" style="width:150rpx;margin-right:10rpx">添加</button>
+              </view>
+            </view>
+            <view class="cu-list menu-avatar">
+              <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{showProList}}" wx:key="index" wx:for-item="item" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+                <!-- <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view> -->
+                <view class="content">
+                  <view class="text-grey">{{item.originName}}　{{item.productsWeight}}{{item.procuctsUnit}}</view>
+                </view>
+                <view class="move">
+                  <view class="bg-red"  bindtap="setStorage" data-link="{{item}}">删除</view>
+                </view>
+              </view>
+            </view>
+
+      <view class="cu-modal {{foodModalName=='Modal'?'show':''}}">
+        <view class="cu-dialog">
+          <view class="cu-bar bg-white justify-end">
+            <view class="content">添加食材及重量</view>
+            <view class="action" bindtap="foodHideModal">
+              <text class="cuIcon-close text-red"></text>
+            </view>
+          </view>
+                
+        <form catchsubmit="foodFormSubmit" catchreset="foodFormReset">
+          <view class="address-item bg-white cu-bar bg-white "  bindtap="pickAddress">
+            <view class="action"><text class=""></text>食材原料</view>
+            <view class="item-content arrow {{region ? '' : 'item-content_shadow'  }}">{{region||"请选择"}}</view>
+          </view>
+          <pop-up visible="{{visible}}" onClose="closePopUp">
+            <view slot="content">
+              <view class="picker-view">
+                <view class="picker-view__pane">
+                  <text catchtap="cityCancel">取消</text>
+                  <text catchtap="citySure">确定</text>
+                </view>
+                <picker-view class="pick-view__group" bindchange="cityChange" bindpickstart="chooseStart" bindpickend="chooseEnd" value="{{value}}">
+                  <picker-view-column indicator-class="item_active">
+                    <view wx:for="{{provinces}}" class="picker-item" wx:key="index">{{item.name}}</view>
+                  </picker-view-column>
+                  <picker-view-column>
+                    <view wx:for="{{citys}}" class="picker-item" wx:key="index">{{item.name}}</view>
+                  </picker-view-column>
+                </picker-view>
+              </view>
+            </view>
+          </pop-up>
+          
+          <view class="cu-bar bg-white "  wx:if="{{iftrue === 'false'}}">
+            <view class="action">
+              <text class=""></text> 生产批号/日期
+            </view>
+            <view>
+              <input class="weui-input" name="manufactureTime" value="{{manufactureTime}}" placeholder="请输入生产批号/日期" />
+            </view>
+          </view>
+          <view class="cu-bar bg-white "  wx:if="{{iftrue === 'false'}}">
+            <view class="action">
+              <text class=""></text> 保质期
+            </view>
+            <view>
+              <input class="weui-input" name="guaranteePeriod" value="{{guaranteePeriod}}" placeholder="请输入保质期" />
+            </view>
+          </view>
+
+          <view class="cu-bar bg-white">
+            <view class="action">
+              <text class=""></text> 采购重量
+            </view>
+            <view>
+              <input class="weui-input" bindinput='getWeightInputValue' type='digit'  name="productsWeight" value="{{productsWeight}}" placeholder="请输入采购重量" />
+            </view>
+          </view>
+
+
+            <view class="cu-form-group bg-white cu-bar myGroup">
+              <view class="action"> <text class=""></text>产品规格</view>
+              <picker bindchange="PickerChange" value="{{index}}" range="{{checkUnit}}">
+                <view class="picker">
+                  {{index?checkUnit[index]:'请选择产品规格'}}
+                </view>
+              </picker>
+            </view>
+
+              <view class="cu-bar bg-white">
+                <view class="action">
+                  <text class=""></text> 食材进价
+                </view>
+                <view>
+                  <input class="weui-input" type='digit' name="ups1" value="{{ups1}}" placeholder="请输入食材进价" />
+                </view>
+              </view>
+                <view style="margin-bottom: 50rpx;">
+                  <button  class="cu-btn round bg-orange shadow" style="margin-left:50rpx;margin-top:30rpx;width:150rpx;" bindtap="foodHideModal" formType="submit">确定</button>
+                  <!-- <button  class="cu-btn round bg-grey shadow" style="margin-left:50rpx;margin-top:30rpx;width:150rpx;"  formType="reset">重置</button> -->
+                </view>
+              </form>
+              </view>
+            </view>
+          </view>
+          <view>
+            <button   class="cu-btn round bg-green shadow" style="margin-left:25%;margin-top:80rpx;width:150rpx;" formType="submit">提交</button>
+            <button  class="cu-btn round bg-grey shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;" formType="reset">重置</button>
+          </view>
+        </view>
+        </form>
+</view>

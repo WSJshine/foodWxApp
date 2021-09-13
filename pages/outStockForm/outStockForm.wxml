@@ -1,0 +1,123 @@
+<!--pages/outStockForm/outStockForm.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">原料出库单</view>
+</cu-custom>
+
+<view class="container">
+  <view class="bg-img " wx:if="{{showList.length == 0}}" style="background-image: url('https://weixin.kdkjyxgs.com:9293/load/000.jpg');width:100vw;height:90vh; position: fixed;z-index:99999"></view>
+  
+      <view class="cu-card article" wx:if="{{showList.length !== 0}}">
+        
+        <view class="cu-item shadow" wx:for="{{showList}}"  wx:for-item="item" wx:key> 
+          <view class="cu-bar bg-white solid-bottom margin-top">
+              <view class="action">
+                <text class="cuIcon-title text-orange "></text> 批次号:{{item.deliveryId}}
+              </view>
+          </view>
+          <view class="cu-bar bg-white solid-bottom" >
+            <view class="action" >
+              <text class="title">品种</text>
+            </view>
+            <view class="action" >
+              <text class="title">出库重量</text>
+            </view>
+            <view class="action" >
+              <text class="title">库存余量</text>
+            </view>
+            <view class="action" >
+              <text class="title">　</text>
+            </view>
+          </view>
+          <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}"  wx:for="{{item.list}}"  wx:for-item="i" wx:key>
+            <view class="cu-item {{menuArrow?'arrow':''}}">
+                  <view class="content">
+                    <text class="text-grey">{{i.productName}}</text>
+                  </view>
+                  <view class="content" style="padding-left: 25%;position: absolute;">
+                    <text class="text-grey">{{i.deliveryWeight}}{{i.productUnit}}</text>
+                  </view>
+                  <view class="content" style="padding-left: 55%;position: absolute;">
+                    <text class="text-grey">{{i.inventory}}{{i.productUnit}}</text>
+                  </view>
+                  <view class="action">
+                    <!-- <text class="text-df margin-right-sm">阴影</text> -->
+                    <switch class="sm" checked="{{item.deliveryStr}}"  bindtap="toOutStockt" data-target="{{item.deliveryId}}"  data-id="{{i.id}}" data-deliveryWeight="{{i.deliveryWeight}}" data-toOutName="{{i.productName}}"></switch>
+                  </view>
+            </view>
+          </view>
+          <!-- <view style="padding-left:35%;">
+            <button  class="cu-btn round bg-green shadow" style="width:150rpx;" bindtap="toOutStockt" data-target="{{item.deliveryId}}">去出库</button>
+          </view> -->
+        </view>
+      </view>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">接收单</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <view class="cu-item shadow" wx:for="{{toGetShowList}}"  wx:for-item="item" wx:key> 
+          <!-- <view class="bg-white solid-bottom margin-top">
+              <view class="action">
+                <text class="cuIcon-title text-orange "></text> 批次号:{{item.batch}}
+              </view>
+          </view> -->
+          <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" >
+            <view class="cu-item {{menuArrow?'arrow':''}}">
+                  <view class="content">
+                    <!-- <text class="cuIcon-btn text-green"></text> -->
+                    <text class="text-grey">{{item.productName}}</text>
+                    <text class="text-grey">{{item.deliveryWeight}} {{item.productUnit}}</text>
+                  </view>
+                  <view class="action" >
+                      <!-- <span>{{i.ups1}}</span> -->
+                      <switch wx:if="{{item.isReceive == 0}}" class='sm' checked="{{false}}" data-target="{{item.id}}"   bindchange='readyGet'></switch>
+                      <switch wx:if="{{item.isReceive == 1}}" class='sm' checked="{{true}}" disabled="true" ></switch>
+                  </view>
+            </view>
+          </view>
+          
+      </view>
+    </view>
+    <view>
+            <button class="cu-btn round bg-green shadow" style="margin-bottom:20rpx;width:150rpx;" bindtap="toFinishGet">确定</button>
+            <!-- <button  class="cu-btn round bg-green shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;" bindtap="toGet" data-target="Modal"
+            data-batch="{{item.batch}}">接收</button> -->
+          </view>
+  </view>
+</view>
+
+<view class="cu-modal {{foodModalName=='Modal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">{{toOutName}}出库重量</view>
+        <view class="action" bindtap="foodHideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+              
+      <form catchsubmit="foodFormSubmit" catchreset="foodFormReset">
+        <view class="cu-bar bg-white">
+            <view class="action">
+              <text class=""></text> 出库重量
+            </view>
+            <view>
+              <input class="weui-input" type='digit' name="toOutdeliveryWeight" value="{{toOutdeliveryWeight}}"  />
+            </view>
+          </view>
+          <view style="margin-bottom: 50rpx;">
+            <button  class="cu-btn round bg-orange shadow" style="margin-left:50rpx;margin-top:30rpx;width:150rpx;" bindtap="foodHideModal" formType="submit">确定</button>
+          </view>
+      </form>
+    </view>
+</view>
+
+
+
+

@@ -1,0 +1,149 @@
+<!--pages/orderForm_new/orderForm_new.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">预订单</view>
+</cu-custom>
+
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}"  wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.day}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{list}}" wx:key id="main-{{index}}" wx:if="{{item.show}}">
+      <view class='cu-bar solid-bottom bg-white' >
+        <view class='action'>
+          <text class='cuIcon-title text-green'></text>{{item.day}} 
+        </view>
+        <view class="grid  padding-sm" >
+          <view class="margin-tb-sm text-center">
+            <button class="cu-btn round" bindtap="foodShowModal" data-target="Modal" data-index="{{index}}">选购</button>
+          </view>
+        </view>
+      </view>
+      
+      <view class="cu-list menu-avatar" wx:if="{{item.showData.length != 0}}">
+          <view class="cu-bar bg-white solid-bottom" style="justify-content: space-around;">
+            <view class="action" >
+              <text class="title">品种</text>
+            </view>
+            <view class="action" >
+              <text class="title">早餐</text>
+            </view>
+            <view class="action" >
+              <text class="title">午餐</text>
+            </view>
+            <view class="action" >
+              <text class="title">晚餐</text>
+            </view>
+          </view>
+        <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{item.showData}}" wx:for-item="i" wx:for-index="index" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+          <view class="cu-bar bg-white" style="width: 68vw;">
+            <view class="action">
+              <view class="text-grey">{{i.dishName}}</view>
+            </view>
+            <view class="action">
+              <view class="text-grey">{{i.breakfastWeight}}{{i.dishType}}</view>
+            </view>
+            <view class="action">
+              <view class="text-grey">{{i.lunchWeight}}{{i.dishType}}</view>
+            </view>
+            <view class="action">
+              <view class="text-grey">{{i.dinnerWeight}}{{i.dishType}}</view>
+            </view>
+          </view>
+          <view class="move">
+            <view class="bg-red" bindtap="delShowList"  data-index="{{index}}" data-target="{{item}}" >删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view>
+  <!--<button class="cu-btn round bg-green shadow" style="margin-left:10%;margin-top:100rpx" bindtap="submit">确定</button> -->
+    <button class="cu-btn round bg-green shadow" style="margin-left:25%;margin-top:80rpx;width:150rpx;" bindtap="submit">提交</button>
+    <button class="cu-btn round bg-green shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;" bindtap="addExcel">上传</button>
+</view>
+
+      <view class="cu-modal {{foodModalName=='Modal'?'show':''}}">
+        <view class="cu-dialog">
+          <view class="cu-bar bg-white justify-end">
+            <view class="content">选购食材</view>
+            <view class="action" bindtap="foodHideModal">
+              <text class="cuIcon-close text-red"></text>
+            </view>
+          </view>
+                
+        <form catchsubmit="foodFormSubmit" catchreset="foodFormReset">
+          <view class="cu-bar bg-white "  bindtap="pickAddress">
+            <view class="action">
+              <text class=""></text> 品种
+            </view>
+            <view class="item-content arrow {{region ? '' : 'item-content_shadow'  }}" style="margin-right: 50rpx;">{{region||"请选择"}}</view>
+          </view>
+          <pop-up visible="{{visible}}" onClose="closePopUp">
+            <view slot="content">
+              <view class="picker-view">
+                <view class="picker-view__pane">
+                  <text catchtap="cityCancel">取消</text>
+                  <text catchtap="citySure">确定</text>
+                </view>
+                <picker-view class="pick-view__group" bindchange="cityChange" bindpickstart="chooseStart" bindpickend="chooseEnd" value="{{value}}">
+                  <picker-view-column indicator-class="item_active">
+                    <view wx:for="{{provinces}}" class="picker-item" wx:key="index">{{item.name}}</view>
+                  </picker-view-column>
+                  <picker-view-column>
+                    <view wx:for="{{citys}}" class="picker-item" wx:key="index">{{item.name}}</view>
+                  </picker-view-column>
+                  <picker-view-column>
+                    <view wx:for="{{areas}}" class="picker-item" wx:key="index">{{item.name}}</view>
+                  </picker-view-column>
+                </picker-view>
+              </view>
+            </view>
+          </pop-up>
+
+          <view class="cu-bar bg-white">
+            <view class="action">
+              <text class=""></text> 早餐选购重量
+            </view>
+            <view class="action">
+              <input class="weui-input" name="breakfastWeight" type='digit' value="{{breakfastWeight}}" placeholder="请输入选购重量" />
+            </view>
+          </view>
+          <view class="cu-bar bg-white">
+            <view class="action">
+              <text class=""></text> 午餐选购重量
+            </view>
+            <view class="action">
+              <input class="weui-input" name="lunchWeight" type='digit' value="{{lunchWeight}}" placeholder="请输入选购重量" />
+            </view>
+          </view>
+          <view class="cu-bar bg-white">
+            <view class="action">
+              <text class=""></text> 晚餐选购重量
+            </view>
+            <view class="action">
+              <input class="weui-input" name="dinnerWeight" type='digit' value="{{dinnerWeight}}" placeholder="请输入选购重量" />
+            </view>
+          </view>
+
+          <view class="cu-form-group cu-bar bg-white">
+            <view class="action" style=" margin-left: 0rpx;">
+              <text class=""></text> 产品规格
+            </view>
+            <picker bindchange="PickerChange" value="{{index}}" range="{{checkUnit}}">
+              <view class="picker">
+                {{index?checkUnit[index]:'请选择产品规格'}}
+              </view>
+            </picker>
+          </view>
+
+          <view >
+            <button  class="cu-btn round bg-orange shadow" style="margin-left:50rpx;margin-top:30rpx;margin-bottom: 30rpx;width:150rpx;" bindtap="foodAdd" formType="submit">确定</button>
+          </view>
+        </form>
+        </view>
+      </view>

@@ -1,0 +1,13 @@
+/* pages/treasury/treasuryList/treasuryList.wxss */
+.margin-bottom-xl {
+  margin-bottom: 0rpx;
+}
+.flex-direction1 {
+  flex-direction: column;
+  width:33.333%;
+  float:left;
+  float: inline-start;
+}
+.cu-bar .action>text[class*="cuIcon-"], .cu-bar .action>view[class*="cuIcon-"] {
+  font-size: 26rpx;
+}

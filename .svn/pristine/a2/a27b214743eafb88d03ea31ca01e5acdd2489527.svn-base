@@ -1,0 +1,56 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <image src="/images/logo.png" class="png" mode="widthFix"></image>
+    <view class="text-xl">{{purProData.productName}}
+      <!-- <text class="text-df">v2.0</text> -->
+    </view>
+    <!-- <view class="margin-top-sm">
+      <text>By:文晓港</text>
+    </view> -->
+    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">批次号　　　 {{purProData.batch}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">产地　　　 　 {{purProData.originName}}</text>
+      </view>
+    </view>
+    
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">出库时间　　　 {{purProData.deliveryTime}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">产品重量　　 {{purProData.productWeight}}{{purProData.productUnit}}</text>
+      </view>
+    </view>
+
+    <view class="cu-item" wx:if="{{purProData.type==2}}">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">商户{{purProData.merchant}}</text>
+      </view>
+    </view>
+
+      <view class="cu-item arrow" wx:for="{{purProData.processings}}"  bindtap="setStorage" data-link="{{item}}" wx:for-item="item">
+        <navigator class="content" hover-class="none">
+          <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+          <text class="text-grey">{{item.processedProducts}}</text>
+        </navigator>
+      </view>
+      
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>

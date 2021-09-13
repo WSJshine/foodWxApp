@@ -1,0 +1,55 @@
+<!--pages/newIndex/newIndex.wxml-->
+<!-- <image src='/images/BasicsBg.png' mode='widthFix' class='png' style='width:100%;height:486rpx'></image> -->
+
+<view class="newIndex-container"> 
+  <image src='/images/BasicsBg.png' mode='widthFix' class='png' style='width:100%;height:500rpx'></image>
+  <cu-custom  isCustom="{{true}}" backLogin="{{true}}"></cu-custom>
+  
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius myMenu">
+    <scroll-view  scroll-x class="bg-white nav {{index==TabCur?'text-green cur ':''}}" scroll-with-animation scroll-left="{{scrollLeft}}" style="height:150rpx;width: 100%;overflow:auto;">
+      <view class="cu-item" wx:for="{{menuList}}" wx:for-item="item" wx:key bindtap="tabSelect" data-id="{{index}}" bindtap="toChild" data-url="{{item.url}}" wx:if="{{item.isShow}}">
+        <view class="cuIcon-cu-image" style="text-align: center;">
+            <image src="{{item.img}}" class="menuImg"></image>
+        </view>
+        <view style="margin-left: inherit;" >
+          {{item.title}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+<view class="container">
+    <ec-canvas id="mychart-dom-multi-bar" canvas-id="mychart-multi-bar" ec="{{ ecBar }}"></ec-canvas>
+</view>
+
+<view class="box">
+  <view class="cu-bar tabbar bg-white">
+    <view class="action" bindtap="changeBottom" data-target="1">
+      <view class="cuIcon-cu-image">
+        <image src="../../ICON/one_press.png" wx:if="{{bottomIndex == '1'}}"></image>
+        <image src="../../ICON/one_unpress.png" wx:if="{{bottomIndex !== '1'}}"></image>
+      </view>
+      <view class="text-green" wx:if="{{bottomIndex == '1'}}">首页</view>
+      <view class="text-gray" wx:if="{{bottomIndex !== '1'}}">首页</view>
+    </view>
+    <view class="action"  bindtap="changeBottom" data-target="2">
+      <view class="cuIcon-cu-image">
+        <image src="../../ICON/two_press.png" wx:if="{{bottomIndex == '2'}}"></image>
+        <image src="../../ICON/two_unpress.png" wx:if="{{bottomIndex !== '2'}}"></image>
+        <view class="cu-tag badge">{{messageCount}}</view>
+      </view>
+      <view class="text-green" wx:if="{{bottomIndex == '2'}}">消息</view>
+      <view class="text-gray" wx:if="{{bottomIndex !== '2'}}">消息</view>
+    </view>
+    <view class="action"  bindtap="changeBottom" data-target="3">
+      <view class="cuIcon-cu-image">
+        <image src="../../ICON/three_press.png" wx:if="{{bottomIndex == '3'}}"></image>
+        <image src="../../ICON/three_unpress.png" wx:if="{{bottomIndex !== '3'}}"></image>
+        <view class="cu-tag badge"></view>
+      </view>
+      <view class="text-green" wx:if="{{bottomIndex == '3'}}">更多</view>
+      <view class="text-gray" wx:if="{{bottomIndex !== '3'}}">更多</view>
+    </view>
+  </view>
+</view>

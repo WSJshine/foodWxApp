@@ -1,0 +1,21 @@
+/* pages/stockList/stockList.wxss */
+.margin-bottom-xl {
+  margin-bottom: 0rpx;
+}
+.flex-direction1 {
+  flex-direction: column;
+  width: 33.33%; 
+  float: inline-start;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: max-content;
+  overflow: scroll;
+  text-align: left;
+}
+.grid.col-3.grid-square>view {
+  padding-bottom: 0rpx;
+  height: 100%; 
+  width: calc((100% - 40rpx)/3);
+}

@@ -1,0 +1,109 @@
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">原料加工</view>
+</cu-custom>
+        <form catchsubmit="formSubmit" catchreset="formReset">
+          <view class="cu-form-group">
+            <view class="title">是否为多原料加工</view>
+            <switch class="orange radius sm" name="processingType" checked   bindchange="changeSwitch"></switch>
+          </view>
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 获取溯源码<text class="" wx:if="{{codeData}}">:{{codeData}}</text>
+            </view>
+            <view class="action">
+              <button class="cu-btn round bg-orange shadow" style="width:150rpx;"  bindtap="scanCode">扫码</button>
+            </view>
+          </view>
+       
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 加工产品
+            </view>
+            <picker bindchange="PickerChange" name="processedProducts" value="{{name}}" range="{{picker}}"  range-key="name">
+              <view class="picker">
+                {{index?picker[index].name:'请选择加工产品'}}
+              </view>
+            </picker>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="title">加工时间</view>
+              <picker mode="date" value="{{date}}" end="{{date}}" bindchange="DateChange">
+                <view class="picker">
+                  {{date}}
+                </view>
+              </picker>
+          </view>
+
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 加工商名称
+            </view>
+            <view>
+              <input class="weui-input" name="converterName" placeholder="请输入加工商名称" />
+            </view>
+          </view>
+
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 加工商名称
+            </view>
+            <view>
+              <input class="weui-input" name="productWeight" placeholder="请输入加工品重量" />
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="title">产品规格</view>
+            <picker bindchange="PickerChange" value="{{index}}" range="{{checkUnit}}">
+                    <view class="picker">
+                      {{index?checkUnit[index]:'请选择产品规格'}}
+                    </view>
+            </picker>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="title">出库时间</view>
+            <picker mode="date" value="{{date}}" end="{{date}}" bindchange="DateChange1">
+                <view class="picker">
+                  {{date1}}
+                </view>
+              </picker>
+          </view>
+
+      
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 商户
+            </view>
+            <view class="text-gray text-sm flex" style="width:400rpx" wx:if="{{merchant}}">
+              <text class="text-cut">
+                 {{merchant}}
+              </text>
+            </view>
+            <view class="action"  style="margin-right:30rpx;" >
+              <button class="cu-btn round bg-orange shadow" style="width:150rpx;"  bindtap="showModal" data-target="ChooseModal">选择</button>
+            </view>
+            <view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal" >
+              <view class="cu-dialog" catchtap style="margin-top:500rpx">
+                <view class="cu-bar bg-white">
+                  <view class="action text-blue" bindtap="hideModal">取消</view>
+                  <view class="action text-green" bindtap="hideModal">确定</view>
+                </view>
+                <view class=" col-2 padding-sm">
+                  <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}"> 
+                    <button class="cu-btn orange lg block {{item.checked?'bg-orange':'line-orange'}}" bindtap="ChooseCheckbox" data-value="{{item.id}}" > {{item.supName}}
+                    </button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+         
+          <view >
+            <button  class="cu-btn round bg-orange shadow" style="margin-left:25%;margin-top:80rpx;width:150rpx;"  formType="submit">提交</button>
+            <button  class="cu-btn round bg-grey shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;"  formType="reset">重置</button>
+          </view>
+        </form>

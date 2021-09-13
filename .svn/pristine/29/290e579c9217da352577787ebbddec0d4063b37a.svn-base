@@ -1,0 +1,139 @@
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">原料入库</view>
+</cu-custom>
+
+<!-- <view class="padding-xl">
+  <button class="cu-btn block bg-green margin-tb-sm lg" bindtap="scanCode">
+    <text class=""></text>
+    <image src="../../images/032.png" style="width:50rpx;height:50rpx" ></image>
+    　扫　码
+  </button>
+</view> -->
+<view class="cu-bar bg-white solid-bottom">
+  <view class='action'>
+    <text class='cuIcon-titles text-orange '></text> 选择要入库的原料
+  </view>
+  <view class='action'>
+    <button class="cu-btn bg-green shadow" bindtap="selectMaterial" data-target="Modal">选择</button>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">待入库原料</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <!-- Modal 内容。 -->
+      <view class="grid col-1 padding-sm">
+        <checkbox-group bindchange="radioChange">
+          <view wx:for="{{checkbox}}" class="padding-xs" >
+            <checkbox class="round" value="{{item.traceability}}" ></checkbox>{{item.batch}}-{{item.productName}}
+          </view>
+        </checkbox-group>
+    </view>
+    <view class="cu-bar justify-end" style="padding-right: 30%">
+      <view class="action" >
+        <button class="cu-btn bg-green" bindtap="hideModal" >确定</button>
+      </view>
+    </view>
+    </view>
+  </view>
+</view>
+
+<view class="container">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="cu-card article">
+        <view class="cu-item shadow" wx:for="{{showList}}"  wx:for-item="item" wx:key="item"> 
+          <view class=" margin-top">
+            <view class="title">
+                  <image src="../../images/016.png" style="width:50rpx;height:50rpx"></image>
+                  <text style="padding-left:20rpx">原料信息</text>
+                  
+                  <image src='/images/003.png' style="width:50rpx;height:50rpx;left: 60%;" class='myImage' bindtap="showModal" data-target="updateModal" data-detail="{{item}}" ></image>
+                 
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="title">食材名称</text>
+            </view>
+            <view>
+              <!-- <input class="weui-input" name="originArea" placeholder="请输入加工品名称" disabled=""/> -->
+              <span>{{item.productName}}</span>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="title">入库重量</text>
+            </view>
+            <view>
+              <!-- <input class="weui-input" name="{{item.traceability}}" data-code="{{item.traceability}}" placeholder="{{item.productWeight}}" /> -->
+              <span>{{item.storageWeight}}</span>
+              
+            </view>
+            <view class="text-cut">
+                  <text class="title">规格</text>
+            </view>
+            <view>
+              <span>{{item.productUnit}}</span>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="title">进货时间</text>
+            </view>
+            <!-- <view class="title">进货时间</view> -->
+            <view>
+              <span>{{item.purchaseTime}}</span>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="title">入库时间</text>
+            </view>
+            <!-- <view class="title">入库时间</view> -->
+            <view>
+              <span>{{date}}</span>
+            </view>
+          </view>
+
+        </view>
+        <view wx:if="{{showList}}">
+            <button   class="cu-btn round bg-green shadow" style="width: 210rpx;margin-left:35%;margin-bottom:20rpx;" formType="submit">确定</button>
+            <!-- <button  class="cu-btn round bg-grey shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;" formType="reset">重置</button> -->
+        </view>
+      </view>
+    </form>
+</view>
+
+
+<view class="cu-modal {{modalName=='updateModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{showData.productName}}</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <form catchsubmit="updateFormSubmit" catchreset="formReset">
+        <view class="cu-form-group margin-top">
+          <view class="title">重量</view>
+          <input type='digit' placeholder="{{showData.productWeight}}" value="{{productWeight}}" name='productWeight'  type="number" bindinput="handleInput" bindblur="validate"></input>{{showData.productUnit}}
+        </view>
+        <view style="margin-bottom: 50rpx;">
+            <button  class="cu-btn round bg-orange shadow" style="margin-left:50rpx;margin-top:30rpx;width:150rpx;" bindtap="hideModal" formType="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

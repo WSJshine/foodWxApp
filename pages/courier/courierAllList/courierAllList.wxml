@@ -1,0 +1,30 @@
+<!--pages/courier/courierList/courierList.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">配送员订单列表</view>
+</cu-custom>
+
+
+<view class="cu-list menu card-menu shadow-lg radius  bg-white  "  wx:for="{{showList}}" wx:for-item="item" >
+  <view class="cu-bar ">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 配送时间：{{item.distributionTime}}
+    </view>
+  </view>
+  <view class="padding  text-center text-grey bg-white shadow-warp" style="display: flow-root;">
+    <view class="flex-direction1 solid-right" wx:for="{{item.orderChildren}}" wx:for-item="i">
+      <view class="margin-top-sm">
+        <text class=""></text> {{i.dishName}}　{{i.dishWeight}}{{i.dishType}}</view>
+    </view>
+  </view>
+  <view style="padding-left:45%;margin-top: -8%;margin-bottom: 3%;" wx:if="{{item.type == 2 && item.distribute == 0}}">
+    <button  class="cu-btn round bg-green shadow" style="margin-left:43%;margin-top:80rpx;width:180rpx;" bindtap="toDelivery" data-orderId="{{item.id}}" >去配送</button>
+   </view>
+   <view style="margin-top: 3%;margin-bottom: 3%;" wx:if="{{item.type == 3 && item.distribute == 1}}">
+        <view class="text-xxl text-blue" style="padding-left:5%;font-size: 24rpx;">
+        <!-- <span wx:if="{{item.type !==4}}">货物状态：{{item.orderStatus}}</span>
+        <span wx:if="{{item.type ==4}}">订单已完成</span> -->
+          <button class="cu-btn round bg-green shadow" style="width:180rpx;margin-left: 65%;" bindtap="toReceipt" data-target="{{item.id}}"  >确认送达</button>
+        </view>
+   </view>
+</view>

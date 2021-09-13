@@ -1,0 +1,44 @@
+<!--pages/morePage/morePage.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">申请角色</view>
+</cu-custom>
+<view class="userinfo">
+  <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+  <text  wx:if="{{type == '1'}}">{{userName}}</text>
+  <!-- <open-data type="userNickName"></open-data> -->  
+  <input wx:if="{{type == '0'}}" placeholder="{{userName}}" style="border:1px solid #c8cccf" bindinput="upInput" name='userName'></input>
+  <text wx:if="{{type == '0'}}"  class='myText'>微信授权用户首次申请请先修改账户名</text>
+</view>
+
+<view class='content'>
+  <view class='header'>
+  <image src='/images/logo.png'></image>
+</view>
+<view>申请获取以下权限</view>
+<!-- <checkbox-group bindchange="radioChange">
+  <label class="checkbox" wx:for="{{checkbox}}">
+    <checkbox value="{{item.value}}" checked="{{item.flag}}" disabled="{{item.disable}}"/>{{item.name}}
+  </label>
+</checkbox-group> -->
+  <!-- <text>获得你的公开信息(昵称，头像等)</text> -->
+  <view class="grid col-1 padding-sm">
+    <checkbox-group bindchange="radioChange">
+      <view wx:for="{{checkbox}}" class="padding-xs" >
+        <checkbox class="round" value="{{item.value}}" checked="{{item.flag}}" disabled="{{item.disable}}"></checkbox>　{{item.name}}
+      </view>
+    </checkbox-group>
+  </view>
+</view>
+
+<!-- <view class='bottom' wx:if="{{canIUseGetUserProfile}}">
+  <button type='primary' lang="zh_CN" bindtap="getUserProfile"> 授权登录 </button>
+</view>
+<view wx:else>请升级微信版本</view> -->
+
+<view class='bottom' wx:if="{{canIUseGetUserProfile}}">
+  <button type='primary' lang="zh_CN" bindtap="submit"> 申请权限 </button>
+</view>
+<view wx:else>请升级微信版本</view>
+
+

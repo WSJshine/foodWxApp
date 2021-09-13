@@ -1,0 +1,213 @@
+<!--pages/weekStock/weekStock.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">周采购单</view>
+</cu-custom>
+<view class='padding margin text-center'>
+      <view class='cu-btn bg-green lg block shadow radius' bindtap="showModal" data-target="viewModal">
+        查看日订单量
+      </view>
+</view>
+<view class="cu-card  isCard ">
+  <view class=" shadow  cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg "> 
+    <view class="title cu-item ">
+      <view class="text-cut">
+        <image src="../../images/001.png" style="width:40rpx;height:40rpx;"></image>
+        <span style="padding-left:10rpx">本周采购量</span>
+      </view>
+    </view>
+  
+      <view class="cu-list menu ">
+        <view class="cu-item ">
+          <view class="content" >
+            <text class="text-grey">食材</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">需采购数目</text>
+          </view>
+        </view>
+        <view class="cu-list menu "  >
+          <view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{oneList}}" wx:for-item="item">
+            <view class="content" bindtap="detailShowModal" data-target="{{item.list}}">
+              <text class="text-grey">{{item.dishName}}</text>
+            </view>
+            <view class="content">
+              <text class="text-grey">{{item.dishWeight}}{{item.dishType}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+
+
+<view class="cu-card  isCard " wx:if="{{twoList.length !== 0}}">
+  <view class=" shadow  cu-list menu card-menu  margin-bottom-xl shadow-lg "> 
+    <view class="title cu-item ">
+      <view class="text-cut">
+        <image src="../../images/002.png" style="width:40rpx;height:40rpx;"></image>
+        <span style="padding-left:10rpx">本周增单量</span>
+      </view>
+    </view>
+  
+      <view class="cu-list menu ">
+        <view class="cu-item ">
+          <view class="content">
+            <text class="text-grey">学校</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">品种</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">数目</text>
+          </view>
+        </view>
+        <view class="cu-list menu "  >
+          <view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{twoList}}" wx:for-item="item">
+            <view class="content">
+              <text class="text-grey">{{item.dishName}}</text>
+            </view>
+            <view class="content">
+              <text class="text-grey">{{item.dishName}}</text>
+            </view>
+            <view class="content">
+              <text class="text-grey">{{item.dishWeight}}{{item.dishType}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+
+<view class="cu-card  isCard " wx:if="{{threeList.length !== 0}}">
+  <view class=" shadow  cu-list menu card-menu  margin-bottom-xl shadow-lg "> 
+    <view class="title cu-item ">
+      <view class="text-cut">
+        <image src="../../images/003.png" style="width:40rpx;height:40rpx;"></image>
+        <span style="padding-left:10rpx">本周订单修改量</span>
+      </view>
+    </view>
+  
+      <view class="cu-list menu ">
+        <view class="cu-item ">
+          <view class="content">
+            <text class="text-grey">学校</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">品种</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">原需求量</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">现需求量</text>
+          </view>
+        </view>
+        <view class="cu-list menu "  >
+          <view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{threeList}}" wx:for-item="item">
+            <view class="content myContent">
+              <text class="text-grey">{{item.school}}</text>
+            </view>
+            <view class="content myContent">
+              <text class="text-grey">{{item.dishName}}</text>
+            </view><view class="content myContent">
+              <text class="text-grey">{{item.updWeight}}{{item.dishType}}</text>
+            </view>
+            <view class="content myContent">
+              <text class="text-grey">{{item.dishWeight}}{{item.dishType}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+
+<view class="cu-card  isCard " wx:if="{{fourList.length !== 0}}">
+  <view class="shadow  cu-list menu card-menu  margin-bottom-xl shadow-lg "> 
+    <view class="title cu-item">
+      <view class="text-cut">
+        <image src="../../images/004.png" style="width:40rpx;height:40rpx;"></image>
+        <span style="padding-left:10rpx">本周订单删除量</span>
+      </view>
+    </view>
+  
+      <view class="cu-list menu ">
+        <view class="cu-item ">
+          <view class="content">
+            <text class="text-grey">学校</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">品种</text>
+          </view>
+          <view class="content">
+            <text class="text-grey">原需求量</text>
+          </view>
+        </view>
+        <view class="cu-list menu "  >
+          <view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{fourList}}" wx:for-item="item">
+            <view class="content">
+              <text class="text-grey">{{item.supName}}</text>
+            </view>
+            <view class="content">
+              <text class="text-grey">{{item.dishName}}</text>
+            </view>
+            <view class="content">
+              <text class="text-grey">{{item.dishWeight}}{{item.dishType}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+
+
+<!-- 详情 -->
+<view class="cu-modal bottom-modal {{modalName=='showModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">原料详情</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <!-- Modal 内容。 -->
+      <view class="grid col-3 grid-square " >
+          <view  class="flex-sub padding-lr isCard" wx:for="{{detailList}}" wx:for-item="item" wx:for-index="i">
+            <view class="cu-item" >
+              <view class="bg-white">
+                  <view class="action cuIcon-title text-orange">{{item.supName}}</view>
+                  <view class=" padding-sm radius  text-sm">
+                    <view class="action padding-sm flex justify-between">
+                      <view class="text-gray text-df" >品种：{{item.dishName}}</view>
+                    </view>
+                  </view>
+            
+                  <view class="action padding-sm flex justify-between">
+                    <view class="text-gray text-df">配送时间：{{item.distributionTime}}</view>
+                  </view>
+                 
+                  <view class="action padding-sm  flex justify-between">
+                    <view class="text-gray text-df">订单量：{{item.dishWeight}}{{item.dishType}}</view>
+                  </view>
+                </view>
+              </view>
+          </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+			<text class="cuIcon-pullright"></text>
+		</view>
+		<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+			<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+				<view class="cu-item arrow" wx:for="{{20}}" wx:key="index">
+					<view class="content">
+						<text class="cuIcon-github text-grey"></text>
+						<text class="text-grey">{{index +1}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view> -->

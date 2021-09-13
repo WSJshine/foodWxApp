@@ -1,0 +1,105 @@
+/* pages/addproduct/addproduct.wxss */
+input,select,textarea{
+	-webkit-appearance: none;
+	font-size: 14px;
+}
+
+.weui-input{
+  height: 100rpx;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+	color: #C0C0C0;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #C0C0C0;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: #C0C0C0;
+}
+
+.radio {
+  transform:scale(0.5);
+}
+
+.text-grey {
+	font-family: PingFang-SC-Regular;
+	font-size: 35rpx;
+	padding-left: 20rpx;
+}
+.myGroup{
+  padding: 1rpx 0rpx;
+}
+.address-item {
+  min-height: 98rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+}
+radio-group {
+  display: inline-block;
+  margin-top: 20rpx;
+}
+.cu-form-group input {
+  margin-top: 20rpx;
+  text-align: end;
+}
+.item-content {
+  padding-left: 20%;
+}
+.item-title {
+  width: 140rpx;
+  color: #4d4c4c;
+  font-size: 28rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+}
+.item-content {
+  width: 520rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  color: #4d4c4c;
+}
+/* 地区级联选择器 */
+
+.picker-view {
+  width: 100%;
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  bottom: 0rpx;
+  left: 0rpx;
+}
+
+.picker-item {
+  /* line-height: 70rpx; */
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  text-align: center;
+}
+
+.picker-view__pane {
+  height: 100rpx;
+  width: 100%;
+  padding: 20rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.picker-view__pane text{
+  color: #00cc88;
+  font-size: 30rpx;
+}
+
+.pick-view__group {
+  width: 96%;
+  height: 450rpx;
+}

@@ -1,0 +1,50 @@
+<!--pages/message/message.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">消息列表</view>
+</cu-custom>
+<!-- <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 消息列表
+    </view>
+  </view> -->
+  <view class="cu-list menu-avatar" >
+    <view class="cu-item" wx:for="{{messageList}}" wx:for-item="item" wx:for-index="index">
+      <view class="cu-avatar radius lg" style="background-image:url('{{item.img}}');">
+        <view class="cu-tag badge"  wx:if="{{item.isRead == 0}}"></view>
+      </view>
+      <view class="content" bindtap="getDetail" data-target="{{item.id}}" data-type="{{item.type}}" data-isComplete="{{item.isComplete}}" data-content="{{item.content}}">
+        <view class="cu-tag round bg-orange sm" wx:if="{{item.type == 0 && item.isComplete==0}}">未审核</view>
+        <view class="cu-tag round bg-orange sm" wx:if="{{item.type == 2 && item.isComplete==0}}">未审核</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">{{item.content}}</text>
+        </view>
+      
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.messageTime}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 详情模态框 -->
+  <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">消息详情</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      {{detailContent}}
+    </view>
+  <!-- 修改重量审核 -->
+    <view wx:if="{{isShow}}">
+        <button class="cu-btn round bg-green shadow" style="margin-bottom:20rpx;width:150rpx;" data-target="true" bindtap="toPass">通过</button>
+        <button  class="cu-btn round bg-green shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;" bindtap="toPass" data-target="false" >驳回</button>
+    </view>
+<!-- 修改权限审核 -->
+    
+  </view>
+</view>

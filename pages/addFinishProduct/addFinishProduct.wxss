@@ -1,0 +1,21 @@
+/* pages/addFinishProduct/addFinishProduct.wxss */
+.padding-xl {
+  margin-top: 40rpx;
+  padding: 0rpx !important;
+}
+.cu-btn.lg {
+  width: 90%;
+}
+.cu-form-group {
+  background-color: var(--white);
+  padding: 1rpx 80rpx;
+}
+
+.cu-form-group+.cu-form-group {
+  /* padding-left: 5%; */
+  width: 90%;
+  margin-left: 5%;
+  /* float: 50rpx; */
+  font-family: -webkit-body;
+  border-top: 1rpx solid #eee;
+}

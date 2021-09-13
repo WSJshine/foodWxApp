@@ -1,0 +1,106 @@
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">加工信息</view></cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>{{detailData.processedProducts}}</view>
+  <!-- <view class='text-content'>
+    <view>Hi！开发者~欢迎使用ColorUI组件库！</view>
+    <view class='margin-top-sm'>该项目是我个人开发的一款高颜值的微信小程序组件库。这个项目不仅有一些漂亮的基础元素，还有一些实用的组件。扩展中心也会不定期更新一些小程序的解决方案，或者你有一些好的想法可以在GitHub里提交给我，我会加入到扩展里。</view>
+    <view class='margin-top-sm'>项目是开源的，不收取任何费用，如果这个项目有帮到你，或者你觉得很赞，可以在GitHub里扫描赞赏码支持一下！</view>
+    <view class='margin-top-sm'>该项目你可以用到除组件库小程序的任何项目。作者我也是花了时间和精力的，我不希望你拷贝一份，做一些修改发布就变成了一个独立的项目，当然！扩展再发布是可以的，但前提是注明一下我这个原作者٩(๑❛ᴗ❛๑)۶</view>
+    <view class='margin-top-sm'>更多功能敬请期待！</view>
+  </view> -->
+  <!-- <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> {{detailData.productName}}
+    </view>
+  </view> -->
+ 
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+    <view class="cu-item ">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">加工时间 　　{{detailData.processingTime}}</text>
+      </view>
+    </view>
+   
+    <!-- <view class="cu-item ">
+      <view class="content">
+        <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">批次号　{{detailData.batch}}</text>
+      </view>
+    </view> -->
+    <view class="cu-item ">
+      <button class="cu-btn content" open-type="contact">
+        <text class="cuIcon-btn text-olive"></text>
+        <text class="text-grey">产品重量 　　　 　{{detailData.productWeight}}{{detailData.productUnit}}</text>
+      </button>
+    </view>
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">出库时间　{{detailData.storageTime}}</text>
+      </navigator>
+    </view>
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">商户 　　{{detailData.merchant}}</text>
+      </navigator>
+    </view>
+    <!-- <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-emojiflashfill text-pink"></text>
+        <text class="text-grey">头像组</text>
+      </view>
+      <view class="action">
+        <view class="cu-avatar-group">
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10004.jpg);"></view>
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10003.jpg);"></view>
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg);"></view>
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        </view>
+        <text class="text-grey text-sm">4 人</text>
+      </view>
+    </view> -->
+    <!-- <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-btn text-green"></text>
+        <text class="text-grey">按钮</text>
+      </view>
+      <view class="action">
+        <button class="cu-btn round bg-green shadow">
+          <text class="cuIcon-upload"></text> 上传</button>
+      </view>
+    </view> -->
+    <!-- <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-grey">标签</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-orange light">音乐</view>
+        <view class="cu-tag round bg-olive light">电影</view>
+        <view class="cu-tag round bg-blue light">旅行</view>
+      </view>
+    </view> -->
+    <!-- <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-warn text-green"></text>
+        <text class="text-grey">文本</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">小目标还没有实现！</text>
+      </view>
+    </view> -->
+    <!-- <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="cuIcon-clothesfill text-blue margin-right-xs"></text> 多行Item</view>
+        <view class="text-gray text-sm">
+          <text class="cuIcon-infofill margin-right-xs"></text> 小目标还没有实现！</view>
+      </view>
+      <view class="action">
+        <switch class="switch-sex sm" bindchange="switchSex"></switch>
+      </view>
+    </view> -->
+  </view>
+</view>

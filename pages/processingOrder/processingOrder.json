@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "pop-up": "/pages/pop-up/index"
+  },
+  "enablePullDownRefresh": true
+}

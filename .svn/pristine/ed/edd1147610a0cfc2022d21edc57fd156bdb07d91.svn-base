@@ -1,0 +1,80 @@
+<!--pages/treasury/treasuryList/treasuryList.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">库管订单列表</view>
+</cu-custom>
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <!-- <view class="cu-item arrow" bindtap="setStorage"> -->
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/treasury/treasuryAllList/treasuryAllList" hover-class="none">
+        <!-- <image src="/images/logo.png" class="png" mode="aspectFit"></image> -->
+        <text class="text-grey">我的订单</text>
+        <text class="text-grey" style="float: right;">全部订单</text>
+       
+      </navigator>
+    </view>
+    <view class="padding flex text-center text-grey bg-white shadow-warp">
+      <view class="flex flex-sub flex-direction solid-right"  bindtap="changeLeft">
+        <view class="text-xxl text-orange">   
+          <image wx:if="{{left == 0}}" src="/images/03_press.png" class="png" mode="aspectFit" style="width:100rpx;height:100rpx"></image>
+          <image wx:if="{{left == 1}}" src="/images/03.png" class="png" mode="aspectFit" style="width:100rpx;height:100rpx"></image>
+        </view>
+        <view class="margin-top-sm">
+          <text class=""></text> 待确认
+        </view>
+      </view>
+
+      <view class="flex flex-sub flex-direction solid-right"  bindtap="changeCenter">
+        <view class="text-xxl text-orange">   
+          <image wx:if="{{center == 0}}" src="/images/01_press.png" class="png" mode="aspectFit" style="width:100rpx;height:100rpx"></image>
+          <image wx:if="{{center == 1}}" src="/images/01.png" class="png" mode="aspectFit" style="width:100rpx;height:100rpx"></image>
+        </view>
+        <view class="margin-top-sm">
+          <text class=""></text> 待发货
+        </view>
+      </view>
+
+      <view class="flex flex-sub flex-direction solid-right" bindtap="changeRight">
+        <view class="text-xxl text-blue" >
+          <image wx:if="{{right == 0}}" src="/images/02_press.png" class="png" mode="aspectFit" style="width:100rpx;height:100rpx"></image>
+          <image wx:if="{{right == 1}}" src="/images/02.png" class="png" mode="aspectFit" style="width:100rpx;height:100rpx"></image>
+        </view>
+        <view class="margin-top-sm">
+          <text class=""></text> 待收货
+        </view>
+      </view>
+    </view>
+</view>
+
+<view class="cu-list menu card-menu shadow-lg radius  bg-white  "  wx:for="{{showList}}" wx:for-item="item" >
+  <view class="cu-bar ">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text>
+      <span style="font-size: 26rpx;"> {{item.supName}}</span>
+      <span style="font-size: 26rpx;padding-left: 40rpx;"> 配送时间：{{item.distributionTime}}</span>
+    </view>
+  </view>
+  <view class="padding  text-center text-grey bg-white shadow-warp" style="display: flow-root;">
+    <view class="flex-direction1 solid-right" wx:for="{{item.orderChildren}}" wx:for-item="i">
+      <view class="margin-top-sm">
+        <text class=""></text> {{i.dishName}}　{{i.dishWeight}}{{i.dishType}}</view>
+    </view>
+  </view>
+  <view style="padding-left:45%;margin-bottom: 3%;" wx:if="{{isIntention == 0}}">
+    <!-- <button  class="cu-btn round bg-green shadow" style="width:180rpx;" bindtap="toConfirm" data-target="{{item.id}}">确认订单</button>
+    <button  class="cu-btn round bg-green shadow" style="margin-left:3%;margin-top:80rpx;width:180rpx;" bindtap="toChangeOrder" data-orderId="{{item.id}}" >修改订单</button> -->
+  </view>
+   <view style="padding-left:45%;margin-top: 3%;margin-bottom: 3%;" wx:if="{{isIntention == 1}}">
+        <view class="text-xxl text-blue" style="padding-left:5%;font-size: 24rpx;">
+        <!-- 货物状态：{{item.orderStatus}} -->
+          <!-- <button  class="cu-btn round bg-green shadow" style="width:180rpx;margin-left: 35%;" bindtap="toReceipt" data-target="{{item.id}}" data-distribute="{{item.distribute}}" >去出库</button> -->
+          <!-- <button  class="cu-btn round bg-green shadow" style="width:180rpx;" bindtap="toConfirm" data-target="{{item.id}}">确认订单</button> -->
+          <button  class="cu-btn round bg-green shadow"  style="width:180rpx;margin-left: 35%;" bindtap="toReceipt" data-orderId="{{item.id}}" >去出库</button> 
+        </view>
+   </view>
+   <view style="margin-top: 3%;margin-bottom: 3%;" wx:if="{{isIntention == 2}}">
+        <view class="text-xxl text-blue" style="padding-left:5%;font-size: 24rpx;">货物状态：{{item.orderStatus}}
+          <!-- <button wx:if="{{isIntention == 1}}" class="cu-btn round bg-green shadow" style="width:180rpx;margin-left: 35%;" bindtap="toReceipt" data-target="{{item.id}}" data-distribute="{{item.distribute}}" >去出库</button> -->
+        </view>
+   </view>
+</view>

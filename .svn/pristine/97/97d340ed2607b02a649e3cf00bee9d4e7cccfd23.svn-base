@@ -1,0 +1,101 @@
+<!--pages/schoolOrderChange/schoolOrderChange.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">出库单</view>
+</cu-custom>
+
+<view class="cu-list menu card-menu shadow-lg radius  bg-white  "  >
+  <!-- <view class="cu-item arrow">
+    <view class="action" bindtap="foodShowModal" data-target="Modal" >
+      <text class="cuIcon-title text-orange "></text> 修改订单
+      <text class="" style="padding-left: 330rpx;"></text> 添加食材
+    </view>
+  </view> -->
+         
+  <view class="padding  text-center text-grey bg-white shadow-warp" style="display: flow-root;"  >
+   
+      <view class="cu-bar  bg-white">
+        <view class="action" style="width:35%;" style="width: inherit;">名称</view>
+        <view class="action" style="width:25%;padding-left:20rpx">
+          <text class="" style="width: -webkit-fill-available;">重量</text>
+          <!-- <input class="weui-input" name="productsWeight" data-target="{{item.id}}" bindinput="inputWeight" placeholder="{{item.dishWeight}}" style="text-align: left;"/> -->
+        </view>
+        <view class="action" style="width:25%">批次号</view>
+        <view class="action" style="width:10%;margin-left:20rpx" >
+          <!-- <image src='/images/scanCode.png' class='myImage'></image> -->
+        </view>
+      </view>
+  </view>
+  <view class="padding  text-center text-grey bg-white shadow-warp" style="display: flow-root;"  wx:for="{{showList}}" wx:for-item="item">
+    <form catchsubmit="foodFormSubmit" catchreset="foodFormReset">
+      <view class="cu-bar  bg-white">
+        <view class="action" style="width:35%;" style="width: inherit;">{{item.dishName}}</view>
+        <view class="action" style="width:20%;padding-left:20rpx">
+          <text class="" style="width: -webkit-fill-available;">{{item.dishWeight}}{{item.dishType}}</text>
+          <!-- <input class="weui-input" name="productsWeight" data-target="{{item.id}}" bindinput="inputWeight" placeholder="{{item.dishWeight}}" style="text-align: left;"/> -->
+        </view>
+        <view class="action" style="width:35%">
+            <span wx:if="{{item.traceability}}" id='{{item.id}}'> {{item.traceability}}</span>
+        </view>
+        <view class="action" style="width:10%;margin-left:20rpx"  bindtap="scanCode" data-str="{{item.traceability}}" data-target="{{item.id}}" data-index='{{index}}'>
+          <image src='/images/scanCode.png' class='myImage'></image>
+        </view>
+      </view>
+    </form>
+  </view>
+  <view style="margin-bottom: 50rpx;">
+      <button  class="cu-btn round bg-green shadow" style="margin-left:40%;margin-top:30rpx;width:150rpx;" bindtap="foodModify" formType="submit">确定</button>
+  </view>
+</view>
+
+<!-- <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green">确定</view>
+      <view class="action text-blue" bindtap="hideModal">取消</view>
+    </view>
+    <view class="padding-xl">
+      <radio-group class="block">
+        <view class="cu-list menu text-left">
+          <view class="cu-item" wx:for="{{5}}" wx:key>
+            <label class="flex justify-between align-center flex-sub">
+              <view class="flex-sub">Item {{index +1}}</view>
+              <radio class="round"></radio>
+            </label>
+          </view>
+        </view>
+      </radio-group>
+    </view>
+  </view>
+</view> -->
+
+<view class="cu-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">选择配送人</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <!-- Modal 内容。 -->
+      <view class="grid col-1 padding-sm">
+        <radio-group class="block">
+          <view class="cu-list menu text-left">
+            <view class="cu-item" wx:for="{{courierList}}" wx:key wx:for-item="item">
+              <label class="flex justify-between align-center flex-sub">
+                <view class="flex-sub">{{item.userName}}</view>
+                <radio class="round" bindtap="radioChange" data-target="{{item.userName}}"></radio>
+              </label>
+            </view>
+          </view>
+        </radio-group>
+    </view>
+    <view class="cu-bar justify-end" style="padding-right: 30%">
+      <view class="action" >
+        <button class="cu-btn bg-orange" bindtap="hideModal1" style="width:150rpx">确定</button>
+      </view>
+    </view>
+    </view>
+  </view>
+</view>

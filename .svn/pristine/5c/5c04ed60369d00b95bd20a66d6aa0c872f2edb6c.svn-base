@@ -1,0 +1,29 @@
+/* pages/addMaterial/addMaterial.wxss */
+.cu-btn.lg {
+  width: 90%;
+  padding: 0 40rpx;
+  font-size: 32rpx;
+  height: 100rpx;
+  background-color: #00C17E;
+}
+.text-cut {
+  width: 200rpx;
+}
+.cu-form-group input {
+  font-size: 25rpx;
+}
+.cu-card.article>.cu-item .title {
+  font-family: PingFangSCRegular;
+  color: #686868;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400rpx;
+  overflow: scroll;
+  text-align: left;
+}
+.cu-bar .action:last-child {
+  width: 150rpx;
+  margin-right: 30rpx;
+}

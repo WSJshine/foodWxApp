@@ -1,0 +1,74 @@
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">原料信息</view></cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg' >
+  <!-- <view class='text-center margin-bottom text-lg  text-grey' wx:if="{{item.type != 2}}">{{item.processedProducts}}</view> -->
+  
+  <!-- <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:if="{{item.type != 2}}">
+    <view class="cu-item ">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">加工时间 　　{{item.processingTime}}</text>
+      </view>
+    </view>
+    <view class="cu-item ">
+      <button class="cu-btn content" open-type="contact">
+        <text class="cuIcon-btn text-olive"></text>
+        <text class="text-grey">产品重量 　　　 　{{item.productWeight}}{{item.productUnit}}</text>
+      </button>
+    </view>
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">出库时间　{{item.storageTime}}</text>
+      </navigator>
+    </view>
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">商户 　　{{item.merchant}}</text>
+      </navigator>
+    </view>
+  </view> -->
+
+  <view class='text-center margin-bottom text-lg  text-grey'>{{detailData.productName}}</view>
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" >
+    <view class="cu-item ">
+      <button class="cu-btn content" open-type="contact">
+        <text class="cuIcon-btn text-olive"></text>
+        <text class="text-grey">供应商 　{{detailData.originName}}</text>
+      </button>
+    </view>
+    
+    <view class="cu-item ">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">产地 　　{{detailData.originName}}</text>
+      </view>
+    </view>
+    
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none"  open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">批次号　{{detailData.batch}}</text>
+      </navigator>
+    </view>
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none"  open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">重量 　　{{detailData.productWeight}}{{detailData.productUnit}}</text>
+      </navigator>
+    </view>
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none"  open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">出库时间 {{detailData.deliveryTime}}</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item ">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect" wx:if="{{detailData.type == 2}}">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">商户 　　{{detailData.merchant}}</text>
+      </navigator>
+    </view>
+  </view>
+</view>

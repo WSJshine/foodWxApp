@@ -1,0 +1,107 @@
+/* pages/testLogin/testLogin.wxss */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  margin: 90rpx 50rpx;
+  /* padding-bottom: 90rpx; */
+  padding-top: 60rpx;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 144rpx;
+  height: 144rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.header {
+  float: left;
+  display: flex;
+  width: 150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+}
+
+.header image {
+  width: 144rpx;
+  height: 144rpx;
+}
+.cu-form-group1 {
+  /* background-color: var(--white); */
+  padding: 1rpx 30rpx;
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.cu-form-group1 .title {
+  min-width: calc(4em + 30rpx);
+}
+.content {
+  padding-bottom: 300rpx;
+  font-size: 14px;
+  line-height: 50rpx;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.content text {
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+}
+
+.bottom {
+  padding: 120rpx 50rpx 0 50rpx;
+}
+
+
+
+.bottomBox {
+  position: fixed;
+  bottom: 120rpx;
+  border-top: 1px solid #ccc;
+  /* left: 35%; */
+  text-align: center;
+  width: inherit;
+}
+.text-xl {
+  font-family: PingFang-SC-Medium;
+  font-size: 25rpx;
+  color:#757575;
+  padding-left: 30rpx;
+}
+.topTitle{
+  font-family: PingFang-SC-Medium;
+  color: black;
+  font-size: 65rpx;
+}
+.topImage{
+  position: absolute;
+  z-index: 0;
+  left: 15%;
+}
+.twoTitle{
+  font-family: PingFang-SC-Medium;
+  color: #545363;
+}
+
+input,select,textarea{
+	-webkit-appearance: none;
+	font-size: 14px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+	color: #C0C0C0;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #C0C0C0;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: #C0C0C0;
+}

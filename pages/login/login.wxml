@@ -1,0 +1,32 @@
+<cu-custom bgColor="bg-gradual-green" >
+	<view slot="content">设置用户名及密码</view>
+</cu-custom>
+
+<view class="container">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 用户名
+            </view>
+            <view>
+              <input class="weui-input" name="userName" placeholder="请输入用户名" />
+            </view>
+          </view>
+
+
+          <view class="cu-bar bg-white margin-top">
+            <view class="action">
+              <text class="cuIcon-title text-orange "></text> 密码
+            </view>
+            <view>
+              <input class="weui-input" name="password" placeholder="请输入密码" />
+            </view>
+          </view>
+       
+      
+          <view>
+            <button   class="cu-btn round bg-green shadow" style="margin-left:25%;margin-top:80rpx;width:150rpx;" formType="submit">登录</button>
+            <button  class="cu-btn round bg-grey shadow" style="margin-left:10%;margin-top:80rpx;width:150rpx;" formType="reset">重置</button>
+          </view>
+        </form>
+</view>

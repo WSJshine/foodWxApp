@@ -1,0 +1,97 @@
+/* pages/orderForm_new/orderForm_new.wxss */
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 100px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+.VerticalBox{
+  display: flex;
+}
+.VerticalMain{
+  background-color: #f1f1f1;
+}
+
+
+.cu-btn {
+  width: 171rpx !important;
+  border:1rpx solid #00C17E;
+  height: 54rpx;
+}
+.cu-btn:not([class*="bg-"]) {
+  background-color: white;
+}
+
+/* 地区级联选择器 */
+
+.picker-view {
+  width: 100%;
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  bottom: 0rpx;
+  left: 0rpx;
+}
+
+.picker-item {
+  /* line-height: 70rpx; */
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  text-align: center;
+}
+
+.picker-view__pane {
+  height: 100rpx;
+  width: 100%;
+  padding: 20rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.picker-view__pane text{
+  color: #00cc88;
+  font-size: 30rpx;
+}
+
+.pick-view__group {
+  width: 96%;
+  height: 450rpx;
+}
+
+.VerticalNav.nav .cu-item {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+.cu-bar .action:last-child {
+  margin-right: 0rpx;
+}

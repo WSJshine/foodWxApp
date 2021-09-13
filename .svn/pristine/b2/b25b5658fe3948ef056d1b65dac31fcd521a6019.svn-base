@@ -1,0 +1,109 @@
+/* pages/processNew/processNew.wxss */
+/* .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+} */
+.scrollPage{
+  padding-top:50rpx;
+}
+.radio {
+  transform:scale(0.5);
+}
+.margin-left-sm {
+  margin-left: 0rpx !important;
+}
+.myText {
+  position: relative !important;
+  top:0rpx !important;
+  right: 15rpx !important;
+  font-size: 36rpx !important;
+  width: 30rpx !important;
+  right: 15rpx !important;
+  height: 50rpx !important;
+  text-align: center !important;
+  line-height: 50rpx !important;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+/* .nav-list{
+  padding-bottom: 30rpx;
+} */
+.myImage{
+  height: 60rpx;
+  width: 60rpx;
+  /* top: 10rpx; */
+}
+.nav-title{
+  color: #fff;
+  /* padding: 0rpx 10rpx 10rpx 0rpx; */
+  /* //上、右、下、左 */
+  /* margin:20rpx 200px 10rpx; */
+  font-size: 40rpx;
+  font-weight: 300;
+  /* transform: skew(-10deg, 0deg); */
+  position: relative;
+  text-shadow: 0px 0px 6rpx rgba(0,0,0,0.3)
+}
+
+#mychart-dom-multi-bar {
+  position: absolute;
+  top: 850rpx;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  height: 500rpx;
+}
+
+#mychart-dom-multi-scatter {
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.cu-card {
+  position: relative;
+  padding-top: 220rpx;
+}
+/* .cu-card1{
+  margin-top: -50rpx;
+} */
+/* .cardTitle::before{
+  content: "";
+  position: absolute;
+  width: 60rpx;
+  height: 6rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  display: block;
+  top: 60rpx;
+  left: 50rpx;  
+  transform: skew(10deg, 0deg);
+}
+.cardTitle::after{
+  content: "";
+  position: absolute;
+  width: 140rpx;
+  border-radius: 6rpx;
+  height: 24rpx;
+  background-color: #fff;
+  display: block;
+  bottom: 76rpx;
+  left: 90rpx;  
+  transform: skew(10deg, 0deg);
+  opacity: 0.1;
+} */

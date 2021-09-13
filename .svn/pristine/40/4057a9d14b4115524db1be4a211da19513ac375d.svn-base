@@ -1,0 +1,7 @@
+/* pages/dayList/daySecondList/daySecondList.wxss */
+.flex-direction1 {
+  flex-direction: column;
+  width:33.333%;
+  float:left;
+  float: inline-start;
+}

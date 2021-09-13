@@ -1,0 +1,151 @@
+<!--pages/addFinishProduct/addFinishProduct.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">成品入库</view>
+</cu-custom>
+
+<view class="container" wx:if="{{showData}}">
+      <view class="cu-card article" >
+        <view class="cu-item shadow "> 
+          <view class=" margin-top">
+            <view class="title">
+                  <image src="../../images/016.png" style="width:50rpx;height:50rpx"></image>
+                  <text style="padding-left:10rpx">加工品信息</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group col-2">
+            <view class="text-cut">
+                  <text class="text-grey">加工品名称</text>
+            </view>
+            <view class="text-cut">
+                  <text class="text-grey">{{showData.processedProducts}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="text-grey">入库重量</text>
+            </view>
+            <view class="text-cut">
+              <text class="text-grey" >{{showData.storageWeight}}{{showData.productUnit}}</text>
+                  <!-- <text class="text-grey" wx:if="{{showData.isPass !== 1}}">{{showData.productWeight}}{{showData.productUnit}}</text>
+                  <text class="text-grey" wx:if="{{showData.isPass == 1}}">{{showData.warehouseNumber}}{{showData.productUnit}}</text> -->
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-grey">入库时间</view>
+            <view>
+              <text class="text-grey">{{date1}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="cu-card article">
+        <view class="cu-item shadow">
+        <view class=" margin-top">
+            <view class="title">
+                  <image src="../../images/016.png" style="width:50rpx;height:50rpx"></image>
+                  <text style="padding-left:10rpx">原料信息</text>
+            </view>
+        </view>
+        <view class="cu-item shadow"  wx:for="{{showData.productPurchases}}"  wx:for-item="item" wx:key="item"> 
+          
+
+          <view class="cu-form-group">
+            <view class="text-cut" >
+                  <text class="cuIcon-title text-orange" ></text> <text class=" text-grey">食材名称</text>
+            </view>
+            <view class="text-cut">
+                  <text class="text-grey">{{item.productName}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="text-grey">批次号</text>
+            </view>
+            <view class="text-cut">
+                  <text class="text-grey">{{item.batch}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-cut">
+                  <text class="text-grey">入库重量</text>
+            </view>
+            <view class="text-cut">
+                  <text class="text-grey">{{item.productWeight}}{{item.productUnit}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-grey">进货时间</view>
+            <view>
+              <text class="text-grey">{{item.purchaseTime}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group">
+            <view class="text-grey">出库时间</view>
+            <view>
+              <text class="text-grey">{{item.warehouseTime}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group" wx:if="{{item.type == '2'}}">
+            <view class="text-grey">生产日期</view>
+            <view>
+              <text class="text-grey">{{item.manufactureTime}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group" wx:if="{{item.type == '2'}}">
+            <view class="text-grey">保质期</view>
+            <view>
+              <text class="text-grey">{{item.guaranteePeriod}}</text>
+            </view>
+          </view>
+
+          <view class="cu-form-group" wx:if="{{item.type == '2'}}">
+            <view class="text-grey">供应商</view>
+            <view>
+              <text class="text-grey">{{item.supplierName}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      </view>
+      <view  style="margin-left:20%;margin-bottom:80rpx;">
+            <button  class="cu-btn round bg-green shadow" style="width:200rpx" bindtap="submit">确定</button>
+            <button  class="cu-btn round bg-grey shadow" style="margin-left:10%;margin-top:80rpx;width:200rpx;" bindtap="showModal" data-target="Modal">修改重量</button>
+      </view>
+      <!-- <view wx:if="{{showData.ups1 != '0'}}" style="margin-left:38%;margin-bottom:80rpx;">
+            <button  class="cu-btn round bg-green shadow" style="width:200rpx" bindtap="submit">确定</button>
+      </view> -->
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{showData.processedProducts}}</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <form catchsubmit="formSubmit" catchreset="formReset">
+        <view class="cu-form-group margin-top">
+          <view class="title">重量</view>
+          <input type='digit' placeholder="{{showData.productWeight}}" name='productWeight'  value="{{productWeight}}" bindinput="handleInput" bindblur="validate"></input>
+        </view>
+        <view style="margin-bottom: 50rpx;">
+            <button  class="cu-btn round bg-orange shadow" style="margin-left:50rpx;margin-top:30rpx;width:150rpx;" bindtap="hideModal" formType="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

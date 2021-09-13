@@ -1,0 +1,25 @@
+<!--pages/dayList/daySecondList/daySecondList.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">日定单</view>
+</cu-custom>
+
+<view class="cu-list menu card-menu shadow-lg radius  bg-white  "  wx:for="{{showList}}" wx:for-item="item" >
+  <view class="cu-bar ">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text>
+      <span style="font-size: 26rpx;"> {{item.supName}}</span>
+      <!-- <text style="font-size: 26rpx;"> {{item.distributionTime}}</text> -->
+    </view>
+    <view class="action">
+      <text style="font-size: 26rpx;"> {{item.distributionTime}}</text>
+    </view>
+  </view>
+  <view class="padding  text-center text-grey bg-white shadow-warp" style="display: flow-root;">
+    <view class="flex-direction1 solid-right" wx:for="{{item.orderChildren}}" wx:for-item="i">
+      <view class="margin-top-sm">
+        <text class=""></text> {{i.dishName}}　{{i.dishWeight}}{{i.dishType}}</view>
+    </view>
+  </view>
+ 
+</view>

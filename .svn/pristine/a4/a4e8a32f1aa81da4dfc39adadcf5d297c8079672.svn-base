@@ -1,0 +1,47 @@
+<!--pages/testLogin/testLogin.wxml-->
+<view class="userinfo" >
+  <!-- <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+  <open-data type="userNickName"></open-data> -->
+  <view class="text-xl">
+    <image src='/ICON/one_press.png' class="topImage" style="width:100rpx;height:90rpx"></image>
+      <text class="topTitle">青椰子商贸</text>
+      <text class="text-df">v1.0</text>
+    </view>
+    <view class="margin-top-sm">
+      <!-- <text class="twoTitle">食品安全溯源</text> -->
+    </view>
+</view>
+
+<view class='content'>
+  <!-- <view class='header'>
+  <image src='/images/logo.png'></image>
+</view>
+<view>申请获取以下权限</view>
+  <text>获得你的公开信息(昵称，头像等)</text> -->
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <view class="cu-form-group1 margin-top" >
+      <input name="userName" placeholder="请输入用户名"></input>
+    </view>
+    <view class="cu-form-group1 ">
+      <input name="password" placeholder="请输入密码"></input>
+    </view>
+          
+    <view>
+      <button type='primary' class="bg-green" formType="submit" style="margin-top:80rpx;width: 90%;border-radius: 60rpx;"> 登录 </button>
+    </view>
+  </form>
+</view>
+
+<view class="bottomBox">
+  <view class="cu-bar tabbar" style="left:35%">
+    <view class='bottom' wx:if="{{canIUseGetUserProfile}}">
+      <!-- <button type='primary' lang="zh_CN" bindtap="getUserProfile"> 授权登录 </button> -->
+      <image src="/images/037.png" style="height:100rpx;width:110rpx"  bindtap="getUserProfile"></image>
+      <view class="text-xl">
+        <span>微信登录</span>
+      </view>
+    </view>
+    <view wx:else>请升级微信版本</view>
+  </view>
+</view>
+

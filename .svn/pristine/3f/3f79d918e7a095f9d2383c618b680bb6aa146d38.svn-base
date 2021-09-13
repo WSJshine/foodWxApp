@@ -1,0 +1,133 @@
+<!--pages/innerLibrary/innerLibrary.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">成品入库单</view>
+</cu-custom>
+
+<view class="container">
+  <view class="bg-img " wx:if="{{showList.length == 0}}" style="background-image: url('https://weixin.kdkjyxgs.com:9293/load/000.jpg');width:100vw;height:90vh; position: fixed;z-index:99999"></view>
+      <view class="cu-card article" wx:if="{{showList.length !== 0}}">
+        <view class="cu-item shadow" wx:for="{{showList}}"  wx:for-item="item" wx:key> 
+          <view class="cu-bar bg-white solid-bottom margin-top">
+              <view class="action">
+                <text class="cuIcon-title text-orange "></text> 批次号:{{item.batch}}
+              </view>
+          </view>
+          <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}"  wx:for="{{item.list}}"  wx:for-item="i" wx:key>
+            <view class="cu-item {{menuArrow?'arrow':''}}">
+                  <view class="content">
+                    <!-- <text class="cuIcon-btn text-green"></text> -->
+                    <text class="text-grey" bindtap="selectDetail" data-target="detailModal" data-batch="{{item.batch}}" data-productName="{{i.processedProducts}}">{{i.processedProducts}}</text>
+                  </view>
+                  <view class="content">
+                    <!-- <text class="cuIcon-btn text-green"></text> -->
+                    <text class="text-grey">{{i.productWeight}}{{i.productUnit}}</text>
+                  </view>
+                  <view class="action" wx:if="{{i.isProcess == 1}}" style="margin-left:20rpx" data-target="{{i.traceability}}"  class="cu-btn" style="width:120rpx" bindtap='scanCode' >
+                        <image src='/images/inner.png' class='myImage'></image>
+                      </view>
+                  <view class="action"  wx:if="{{i.isProcess == 0}}" style="margin-left:20rpx;width:100rpx">
+                    <text class="text-grey">加工中</text>
+                  </view>
+            </view>
+          </view>
+          <!-- <view style="padding-left:35%;">
+            <button  wx:if="{{item.isPick !== '1'}}" class="cu-btn round bg-green shadow" style="width:150rpx;" bindtap="toCollect" data-target="{{item.batch}}">去提货</button>
+            <button  class="cu-btn round bg-green shadow" style="margin-left:3%;margin-top:80rpx;width:150rpx;" bindtap="toGet" data-target="Modal" data-batch="{{item.batch}}">接收</button>
+          </view> -->
+        </view>
+      </view>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">接收单</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <view class="cu-item shadow" wx:for="{{toGetShowList}}"  wx:for-item="item" wx:key> 
+          <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" >
+            <view class="cu-item {{menuArrow?'arrow':''}}">
+                  <view class="content">
+                    <text class="text-grey">{{item.productName}}</text>
+                    <text class="text-grey">{{item.deliveryWeight}} {{item.productUnit}}</text>
+                  </view>
+                  <view class="action" >
+                      <switch wx:if="{{!item.receiveStr}}" class='sm' checked="{{item.receiveStr}}" data-target="{{item.id}}"   bindchange='readyGet'></switch>
+                      <switch wx:if="{{item.receiveStr}}" class='sm' checked="{{item.receiveStr}}" disabled="true" ></switch>
+                  </view>
+            </view>
+          </view>
+      </view>
+    </view>
+    <view>
+            <button class="cu-btn round bg-green shadow" style="margin-bottom:20rpx;width:150rpx;" bindtap="toFinishGet">确定</button>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='detailModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{detailTitle}}</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="">
+      <!-- Modal 内容。 -->
+      <view class=" col-1 " >
+        <view class="cu-bar1 bg-white solid-bottom" >
+            <view class="action" >
+              <text class="title">需求量</text>
+            </view>
+            <view class="action" >
+              <text class="title">单位</text>
+            </view>
+          </view>
+        <view class="cu-bar1 bg-white solid-bottom" wx:for="{{detailList}}" wx:for-item="item" wx:key>
+          <view class="action" >
+            <view class="" style="padding-left:50rpx">{{item.dishWeight}}{{item.dishType}}</view>
+          </view>
+          <view class="action">
+            <text class=""></text> {{item.supName}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big91012.jpg');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+    </view>
+  </view>
+</view> -->
+                <view class="cu-modal {{modalName=='Image'?'show':''}}">
+                  <view class="cu-dialog">
+                    <view class="bg-img" style="background-image: url('{{purchaseImg}}');height:750rpx;">
+                      <view class="cu-bar justify-end text-white">
+                        <view class="action" bindtap="processHideModal">
+                          <text class="cuIcon-close" style="color:red"></text>
+                        </view>
+                      </view>
+                    </view>
+                    <view class="cu-bar bg-red">
+                      <view class="action margin-0 flex-sub  solid-left"  bindtap='save'>保存图片到相册</view>
+                    </view>
+                  </view>
+                </view>
+
+

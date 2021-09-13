@@ -1,0 +1,56 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <image src="/images/logo.png" class="png" mode="widthFix"></image>
+    <view class="text-xl">{{purProData.dishName}}
+      <!-- <text class="text-df">{{purProData.enterpriseName}}</text> -->
+    </view>
+    <view class="margin-top-sm">
+      <text>{{purProData.enterpriseName}}</text>
+    </view>
+    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <!-- <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">单位　　　 {{purProData.enterpriseName}}</text>
+      </view>
+    </view> -->
+    <!-- <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">产地　　　 　 {{purProData.originName}}</text>
+      </view>
+    </view> -->
+    
+    <!-- <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">出库时间　　　 {{purProData.deliveryTime}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">产品重量　　 {{purProData.productWeight}}{{purProData.productUnit}}</text>
+      </view>
+    </view>
+
+    <view class="cu-item" wx:if="{{purProData.type==2}}">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">商户　　　　 {{purProData.merchant}}</text>
+      </view>
+    </view> -->
+
+      <view class="cu-item arrow" wx:for="{{purProData.ingredients}}"  bindtap="setStorage" data-link="{{item}}" wx:for-item="item">
+        <navigator class="content"  hover-class="none" open-type="navigate">
+          <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+          <text class="text-grey">{{item.name}}</text>
+        </navigator>
+      </view>
+      
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>

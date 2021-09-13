@@ -1,0 +1,18 @@
+<!--pages/dayList/dayFirstList/dayFirstList.wxml-->
+<cu-custom bgColor="bg-gradual-gemGreen" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">日定单</view>
+</cu-custom>
+
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow" wx:for="{{showList}}" wx:for-item="item" wx:key wx:for-index='i'>
+      <!-- <view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+        <text class="cuIcon-github text-grey"></text>
+        <text class="text-grey">{{i}}</text>
+      </view> -->
+      <navigator class="content"  url="/pages/dayList/daySecondList/daySecondList?title={{i}}" hover-class="none">
+        <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">{{i}}</text>
+      </navigator>
+    </view>
+</view>

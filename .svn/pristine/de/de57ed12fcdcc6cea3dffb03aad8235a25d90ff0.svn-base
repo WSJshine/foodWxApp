@@ -1,0 +1,10 @@
+/* pages/schoolOrderAbout/schoolOrderAbout.wxss */
+.margin-bottom-xl {
+  margin-bottom: 0rpx;
+}
+.flex-direction1 {
+  flex-direction: column;
+  width:33.333%;
+  float:left;
+  float: inline-start;
+}
